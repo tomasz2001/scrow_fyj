@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@icp-sdk/auth": "^8.0.3",
+    "@icp-sdk/core": "^5.4.0"
+  }
+}

@@ -1,0 +1,43 @@
+type user = 
+ record {
+   escrow: nat;
+   kontakt: text;
+   pgp: text;
+   wallet: principal;
+ };
+type Escrow_ckbtc = 
+ record {
+   burn_time: nat64;
+   end: principal;
+   end_vote: text;
+   middle: principal;
+   middle_drop: nat;
+   middle_vote: text;
+   start: principal;
+   start_vote: text;
+   state: text;
+   sylli_drop: nat;
+   wallet_id: nat;
+ };
+type Account = 
+ record {
+   owner: principal;
+   subaccount: opt blob;
+ };
+service : {
+  
+  account_edit: (pgp: text, wallet: principal, kontakt: text) -> (text);
+  death: () -> (text);
+  escrow_balance: () -> (nat);
+  escrow_wallet: () -> (opt Account);
+  get_account: (a: principal) -> (opt user) query;
+  get_escrow: () -> (opt Escrow_ckbtc);
+  greet: (name: text) -> (text) query;
+  law_escrow: (escrow_id: nat, v: text) -> (text);
+  make_escrow: (middle: principal, end: principal, middle_drop: nat,
+   sylli_drop: nat) -> (text);
+  new_escrow: (middle: principal, end: principal, middle_drop: nat,
+   sylli_drop: nat) -> (text);
+  vote_escrow: (escrow_id: nat, vote: text) -> (text);
+  recovery: (wallet_id: nat) -> (text);
+}
